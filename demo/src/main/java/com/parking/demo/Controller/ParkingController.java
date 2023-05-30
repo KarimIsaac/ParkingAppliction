@@ -54,4 +54,44 @@ public String addPerson(@RequestBody Person person) {
     personRepo.save(person);
     return "Person saved !";
 }
+
+// Get all cars.
+@GetMapping("/cars")
+public List<Car> getCars() {
+    return carRepo.findAll();
+}
+
+// Add a car.
+@PostMapping("/cars")
+public String addCar(@RequestBody Car car) {
+    carRepo.save(car);
+    return "Car saved!";
+}
+
+// Get all parking events.
+@GetMapping("/parkingevents")
+public List<ParkingEvent> getParkingEvents() {
+    return parkingEventRepo.findAll();
+}
+
+// Add a parking event.
+@PostMapping("/parkingevents")
+public String addParkingEvent(@RequestBody ParkingEvent parkingEvent) {
+    parkingEventRepo.save(parkingEvent);
+    return "Parking event saved!";
+}
+
+// Get all parking spots.
+@GetMapping("/parkingspots")
+public List<ParkingSpots> getParkingSpots() {
+    return parkingSpotsRepo.findAll();
+}
+
+// Add a parking spot.
+@PostMapping("/parkingspots")
+public String addParkingSpot(@RequestBody ParkingSpots parkingSpot) {
+    parkingSpotsRepo.save(parkingSpot);
+    return "Parking spot saved!";
+}
+
 }
