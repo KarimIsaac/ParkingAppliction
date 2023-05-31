@@ -36,6 +36,9 @@ ParkingSpotsRepo parkingSpotsRepo;
 
 @Autowired
 ParkingEventRepo parkingEventRepo;
+ 
+
+ 
 
 @GetMapping("/")
 public String getPage() {
@@ -79,6 +82,22 @@ public List<ParkingEvent> getParkingEvents() {
 public String addParkingEvent(@RequestBody ParkingEvent parkingEvent) {
     parkingEventRepo.save(parkingEvent);
     return "Parking event saved!";
+}
+ // Get ongoing parking spaces for a user.
+ @GetMapping("/persons/{personId}/parkingevents/ongoing")
+ public List<ParkingEvent> getOngoingParkingEventsForPerson(@PathVariable Long personId) {
+     return parkingEventRepo.findByPersonIdAndStatus(personId, "ongoing");
+ }
+
+ // Get ongoing parking spaces for a car.
+ @GetMapping("/cars/{carId}/parkingevents/ongoing")
+ public List<ParkingEvent> getOngoingParkingEventsForCar(@PathVariable Long carId) {
+     return parkingEventRepo.findByCarIdAndStatus(carId, "ongoing");
+ }
+// Get completed parking events.
+@GetMapping("/parkingevents/completed")
+public List<ParkingEvent> getCompletedParkingEvents() {
+    return parkingEventRepo.findByStatus("completed");
 }
 
 // Get all parking spots.
